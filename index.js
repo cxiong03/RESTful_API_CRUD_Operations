@@ -11,3 +11,11 @@ mongoose.connect('mongodb://localhost/playground')
         date: { type: Date, default: Date.now },
         isPublished: Boolean
     });
+
+const Course = mongoose.model('Course', courseSchema); // Pascal to name course
+const course = new Course({  // camel case to name object
+    name: 'Node.js Course',
+    author: 'Chang',
+    tags: ['node', 'backend'],
+    isPublished: true
+});
