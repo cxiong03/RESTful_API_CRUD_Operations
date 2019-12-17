@@ -13,9 +13,17 @@ mongoose.connect('mongodb://localhost/playground')
     });
 
 const Course = mongoose.model('Course', courseSchema); // Pascal to name course
-const course = new Course({  // camel case to name object
-    name: 'Node.js Course',
-    author: 'Chang',
-    tags: ['node', 'backend'],
-    isPublished: true
-});
+
+async function createCourse() {
+    const course = new Course({  // camel case to name object
+        name: 'Angular Course',
+        author: 'Chang',
+        tags: ['angular', 'frontend'],
+        isPublished: true
+    });
+    
+    const result = await course.save();
+    console.log(result);
+}
+
+createCourse();
