@@ -30,7 +30,6 @@ async function getCourses() {
     const pageNumber = 2;
     const pageSize = 10;
 
-
     const courses = await Course
         .find({ author: 'Chang', isPublished: true })
         .skip((pageNumber - 1) * pageSize)
@@ -41,12 +40,12 @@ async function getCourses() {
 }
 
 async function updateCourse(id) {
-    const course = await Course.findById(id);
-    if (!course) return;
-    course.isPublished = true;
-    course.author = 'Another Author';
-    
-    const result = await course.save();
+    const result = await Course.findByIdAndUpdate( id, {
+        $set: {
+            author: 'Jason',
+            isPublished: false
+        }
+    }, { new: true });
     console.log(result);
 }
 updateCourse('5df8343b76a500322d2d6698');
